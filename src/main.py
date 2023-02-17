@@ -1,5 +1,27 @@
 from knn import KNearest
+import numpy as np
+import os
 
+train = np.genfromtxt('data/MNIST_train_tiny.csv', delimiter=',')
+test = np.genfromtxt('data/MNIST_test_tiny.csv', delimiter=',')
+print(train[0][0])
+print(test[0][0])
+
+model = KNearest(1)
+model.addTrainingData(train)
+k = 1
+
+while k <= 20:
+    model.setK(k)
+    model.classifyTrain(0)
+    y_hat = model.classifyTest(0, test)
+    total_wrong = 0
+    for x in range(0,len(y_hat)):
+        if model.train[x][0] != y_hat[x]:
+            total_wrong+=1
+
+    print(total_wrong)
+    k+=1
 # 1 a
     # kn = KNearest(1)
     # kn.addTrainingData(MNIST_train_small)
