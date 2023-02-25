@@ -27,7 +27,7 @@ class KNearest:
         # use 20% as test data
         pass
 
-    def classifyTest(self, dist_type, test=self.test, p=1):
+    def classifyTest(self, dist_type, test, p=1):
         """
         run KNN on test dataset
 
@@ -100,7 +100,6 @@ class KNearest:
         :return: classifications of train/test data
         :rtype: list
         """
-
         y_hat = []
 
         if not test:
