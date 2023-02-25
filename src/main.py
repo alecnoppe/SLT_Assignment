@@ -2,6 +2,7 @@ from knn import KNearest
 import numpy as np
 import os
 
+
 train = np.genfromtxt('data/MNIST_train_tiny.csv', delimiter=',')
 test = np.genfromtxt('data/MNIST_test_tiny.csv', delimiter=',')
 print(train[0][0])
@@ -20,7 +21,7 @@ while k <= 20:
         if model.train[x][0] != y_hat[x]:
             total_wrong+=1
 
-    print(total_wrong)
+    print((len(y_hat)-total_wrong)/len(y_hat))
     k+=1
 # 1 a
     # kn = KNearest(1)
