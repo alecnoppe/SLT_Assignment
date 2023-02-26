@@ -3,6 +3,8 @@ from math import sqrt
 
 class KNearest:
     def __init__(self, k):
+        if k < 1:
+            raise Exception('Choose k greater than or equal to 1!')
         self.K = k
 
     def addTrainingData(self, td):
@@ -75,9 +77,9 @@ class KNearest:
         :return: label with most occurrences
         :rtype: int
         """
-        counts = [0,0,0, 0,0,0, 0,0,0]
+        counts = [0,0,0, 0,0,0, 0,0,0, 0]
         for n in neighbors:
-            counts[int(self.train[n][0])-1]+=1
+            counts[int(self.train[n][0])]+=1
         
         max_value = 0
         index = 0
@@ -86,8 +88,13 @@ class KNearest:
             if c > max_value:
                 max_value = c
                 index = i
+            if c == max_value:
+                for x, y in enumerate(counts):
+                    if y == max_value:
+                        index = x
+                        break
             
-        return index+1
+        return index
                 
     
     def loocv(self, dist_type:int, p:int=1, test:bool=False):
@@ -163,7 +170,7 @@ class KNearest:
         :rtype: int
         """
         # return sqrt (| w[1] - v[1] |^p + ... + | w[n-1] - v[n-1] |^p)
-        return sum(abs([x[0]-x[1]])**p for x in zip(v[1:],w[1:]))**(1/p)
+        return sum([abs(x[0]-x[1])**p for x in zip(v[1:],w[1:])])**(1/p)
 
     def manhattanDistance(self, v, w):
         """
@@ -175,4 +182,4 @@ class KNearest:
         :rtype: int
         """
         # return | w[1] - v[1] | + ... + | w[n-1] - v[n-1] |
-        return sum(abs([x[0]-x[1]]) for x in zip(v[1:],w[1:]))
+        return sum([abs(x[0]-x[1]) for x in zip(v[1:],w[1:])])

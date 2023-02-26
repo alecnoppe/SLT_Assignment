@@ -1,4 +1,4 @@
-from knn import KNearest
+from src.knn import KNearest
 
 class SortedKNN(KNearest):
     def __init__(self, k):

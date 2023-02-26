@@ -1,9 +1,11 @@
-from knn import KNearest
+from src.knn import KNearest
 import numpy as np
 from math import sqrt
 
 class SemiNaiveKNN(KNearest):
     def __init__(self, k):
+        if k < 1:
+            raise Exception('Choose k greater than or equal to 1!')
         self.K = k
 
     

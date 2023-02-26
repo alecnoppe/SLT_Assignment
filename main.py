@@ -1,7 +1,6 @@
-from knn import KNearest
+from src.knn import KNearest
+from src.semi_naive_knn import SemiNaiveKNN
 import numpy as np
-import os
-print(os.path.abspath(os.curdir))
 
 train = np.genfromtxt('data/MNIST_train_tiny.csv', delimiter=',')
 test = np.genfromtxt('data/MNIST_test_tiny.csv', delimiter=',')

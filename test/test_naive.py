@@ -1,10 +1,12 @@
 import unittest
-from model_test import ModelTest
+from test.model_test import ModelTest
 from src.knn import KNearest
 
-class TestNaive(ModelTest):
-    def __init__(self):
+class TestNaive(ModelTest, unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
         self.model = KNearest(1)
     
+
 if __name__ == '__main__':
     unittest.main()

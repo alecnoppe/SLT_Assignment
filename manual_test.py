@@ -1,9 +1,7 @@
-import numpy as np
-import os
-print(os.getcwd())
-
 from src.semi_naive_knn import SemiNaiveKNN
 from src.knn import KNearest
+import numpy as np
+import os
 import time
 import sys
 
@@ -20,7 +18,7 @@ elif __name__ == "__main__" and len(sys.argv) > 1:
     k = int(args[1])
     n_x, n_test = test.shape
 else:
-    k = 3
+    k = 1
     n_test = 10
 
 model = KNearest(k)
