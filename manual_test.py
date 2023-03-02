@@ -18,24 +18,28 @@ elif __name__ == "__main__" and len(sys.argv) > 1:
     k = int(args[1])
     n_x, n_test = test.shape
 else:
-    k = 1
-    n_test = 10
-
+    k = 3
+    n_test = 20
+"""
 model = KNearest(k)
 model.addTrainingData(train)
 
 start = time.time()
 y_hat = model.classifyTest(0, test[:n_test])
+print(y_hat)
 end = time.time()
 
 print(f"Naive {k}-Nearest-Neighbors: on {n_test} entries: {end - start} seconds")
-print()
+print()"""
 
 model = SemiNaiveKNN(k)
 model.addTrainingData(train)
 
 start = time.time()
 y_hat = model.classifyTest(0, test[:n_test])
+print(y_hat)
 end = time.time()
 
 print(f"Semi-Naive {k}-Nearest-Neighbors: on {n_test} entries: {end - start} seconds")
+print(f"KNN rule time: {model.rule_time}, Neighbor time: {model.neighbor_time}")
+print(f"get neighbor time: {model.neighbor_get_time}, sort neighbor time: {model.neighbor_sort_time}")

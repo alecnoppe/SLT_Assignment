@@ -1,5 +1,6 @@
 import numpy as np
 from math import sqrt
+from scipy.spatial import distance
 
 class KNearest:
     def __init__(self, k):
@@ -155,7 +156,8 @@ class KNearest:
         :rtype: int
         """
         # return sqrt ((w[1] - v[1])^2 + ... + (w[n-1] - v[n-1])^2)
-        return sqrt(sum([(x[0]-x[1])**2 for x in zip(v[1:],w[1:])]))
+        # return sqrt(sum([(x[0]-x[1])**2 for x in zip(v[1:],w[1:])]))
+        return np.linalg.norm(v[1:]-w[1:])
 
     def minkowskiDistance(self, v, w, p=1):
         """
@@ -170,7 +172,8 @@ class KNearest:
         :rtype: int
         """
         # return sqrt (| w[1] - v[1] |^p + ... + | w[n-1] - v[n-1] |^p)
-        return sum([abs(x[0]-x[1])**p for x in zip(v[1:],w[1:])])**(1/p)
+        # return sum([abs(x[0]-x[1])**p for x in zip(v[1:],w[1:])])**(1/p)
+        return distance.minkowski(v[1:], w[1:], p)
 
     def manhattanDistance(self, v, w):
         """
@@ -182,4 +185,5 @@ class KNearest:
         :rtype: int
         """
         # return | w[1] - v[1] | + ... + | w[n-1] - v[n-1] |
-        return sum([abs(x[0]-x[1]) for x in zip(v[1:],w[1:])])
+        # return sum([abs(x[0]-x[1]) for x in zip(v[1:],w[1:])])
+        return distance.minkowski(v[1:], w[1:], 1)
